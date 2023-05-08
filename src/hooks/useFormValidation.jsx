@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usersData } from "../mock/data/usersData";
 
 export const useFormValidation = (initialState, validate) => {
   const [formData, setFormData] = useState(initialState);
@@ -17,9 +18,24 @@ export const useFormValidation = (initialState, validate) => {
     const validationErrors = validate(formData);
     setErrors(validationErrors);
 
+    const isEmailExists = usersData.some((user) => user.email === formData.mail);
+    const isUsernameExists = usersData.some((user) => user.username === formData.username);
+
+    if (isEmailExists) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        mail: "Email already exists.",
+      }));
+    } 
+    if (isUsernameExists) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: "Username already exists.",
+      }));
+    } 
+
     if (Object.keys(validationErrors).length === 0) {
-      // Realizar acciones adicionales como enviar los datos al servidor
-      console.log("Formulario válido. Enviar datos al servidor:", formData);
+        alert("Formulario válido. Enviar datos al servidor.", formData);
     } else {
       console.log("Formulario inválido. Por favor, revise los campos.");
     }

@@ -88,4 +88,5 @@ form > button {
   color: #fff;
   background-color: #04643f;
   margin-top: 15px;
+  cursor: pointer;
 }
