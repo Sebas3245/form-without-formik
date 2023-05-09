@@ -1,5 +1,6 @@
+import { Stack, TextField } from "@inube/design-system";
 import { useFormValidation } from "../..//hooks/useFormValidation";
-import { validateForm } from "./config/validations";
+import { validations } from "./config/validations";
 
 const initialState = {
   name: "",
@@ -12,99 +13,129 @@ const initialState = {
 };
 
 export default function BasicForm() {
-  const { formData, errors, handleChange, handleSubmit } = useFormValidation(
-    initialState,
-    validateForm
-  );
+  const { formData, errors, handleChange, handleSubmit, handleBlur } =
+    useFormValidation(initialState, validations);
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Contact information</h1>
       <h2>Complete your information to register in Linix</h2>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
+      <Stack direction="column" alignItems="center" gap="10px">
+        <TextField
+          label="Name"
           type="text"
           id="name"
           name="name"
           placeholder="Type Name.."
           value={formData.name}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={handleBlur}
+          isFullWidth
+          isRequired
+          state={formData.name && errors.name ? "invalid" : undefined}
+          errorMessage={errors.name}
         />
-        {errors.name && <span>{errors.name}</span>}
-      </div>
-      <div>
-        <label htmlFor="identification">Identification</label>
-        <input
+        <TextField
+          label="Identification"
           type="number"
           id="identification"
           name="identification"
           placeholder="Type identification number"
           value={formData.identification}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={handleBlur}
+          isFullWidth
+          isRequired
+          state={
+            formData.identification && errors.identification
+              ? "invalid"
+              : undefined
+          }
+          errorMessage={errors.identification}
         />
-        {errors.identification && <span>{errors.identification}</span>}
-      </div>
-      <div>
-        <label htmlFor="phoneNumber">Phone number</label>
-        <input
-          type="text"
+        <TextField
+          label="Phone number"
+          type="number"
           id="phoneNumber"
           name="phoneNumber"
           placeholder="Type phone number only numbers.."
           value={formData.phoneNumber}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={() => console.log("num")}
+          isFullWidth
+          state={
+            formData.phoneNumber && errors.phoneNumber ? "invalid" : undefined
+          }
+          errorMessage={errors.phoneNumber}
         />
-        {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
-      </div>
-      <div>
-        <label htmlFor="mail">Mail</label>
-        <input
+        <TextField
+          label="Mail"
           type="email"
           id="mail"
           name="mail"
           placeholder="Type mail with format @domain.com.."
           value={formData.mail}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={handleBlur}
+          isFullWidth
+          isRequired
+          state={formData.mail && errors.mail ? "invalid" : undefined}
+          errorMessage={errors.mail}
         />
-        {errors.mail && <span>{errors.mail}</span>}
-      </div>
-      <div>
-        <label htmlFor="username">User name</label>
-        <input
+        <TextField
+          label="User name"
           type="text"
           id="username"
           name="username"
           placeholder="Type user name.."
           value={formData.username}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={handleBlur}
+          isFullWidth
+          isRequired
+          state={formData.username && errors.username ? "invalid" : undefined}
+          errorMessage={errors.username}
         />
-        {errors.username && <span>{errors.username}</span>}
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
+        <TextField
+          label="Password"
           type="password"
           id="password"
           name="password"
           placeholder="Type password 8-64.."
           value={formData.password}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={handleBlur}
+          isFullWidth
+          isRequired
+          state={formData.password && errors.password ? "invalid" : undefined}
+          errorMessage={errors.password}
         />
-        {errors.password && <span>{errors.password}</span>}
-      </div>
-      <div>
-        <label htmlFor="confirmPassword">Confirm password</label>
-        <input
+        <TextField
+          label="Confirm password"
           type="password"
           id="confirmPassword"
           name="confirmPassword"
           placeholder="Type confirm password.."
           value={formData.confirmPassword}
-          onChange={handleChange}
+          handleChange={handleChange}
+          size="compact"
+          handleBlur={handleBlur}
+          isFullWidth
+          isRequired
+          state={
+            formData.confirmPassword && errors.confirmPassword
+              ? "invalid"
+              : undefined
+          }
+          errorMessage={errors.confirmPassword}
         />
-        {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-      </div>
+      </Stack>
       <button type="submit">Send</button>
     </form>
   );

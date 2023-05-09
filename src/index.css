@@ -30,15 +30,6 @@ form {
   box-shadow: 0px 0px 5px 0px rgba(104, 104, 104, 0.822);
 }
 
-form > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
 form > h1 {
   font-size: 1.2em;
   text-align: left;
@@ -51,31 +42,6 @@ form > h2 {
   text-align: left;
   color: #727272;
   margin-bottom: 20px;
-}
-
-form > div > label {
-  color: rgb(3, 14, 65);
-  font-size: 0.8em;
-  font-weight: 600;
-  margin-bottom: 5px;
-  margin-left: 15px;
-}
-
-form > div > input {
-  padding: 10px 15px;
-  font-size: 0.8em;
-  border-radius: 9px;
-  outline: none;
-  border: none;
-  border: 1px solid #b8b7b7;
-  width: 100%;
-  background-color: #f3f3f36e;
-  color: rgb(3, 14, 65);
-  letter-spacing: 1.3px;
-}
-form > div > span {
-  font-size: 0.7em;
-  color: rgb(161, 8, 8);
 }
 
 form > button {
