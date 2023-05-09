@@ -12,6 +12,12 @@ export const useFormValidation = (initialState, validations) => {
       ...prevFormData,
       [name]: value,
     }));
+
+    if (errors[name]) {
+      setErrors({
+        [name]: "",
+      }); // reset errors
+    }
   };
 
   const handleBlur = (e) => {
