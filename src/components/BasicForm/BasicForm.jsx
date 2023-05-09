@@ -36,7 +36,7 @@ export default function BasicForm() {
       <div>
         <label htmlFor="identification">Identification</label>
         <input
-          type="text"
+          type="number"
           id="identification"
           name="identification"
           placeholder="Type identification number"

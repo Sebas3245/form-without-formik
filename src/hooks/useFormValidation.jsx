@@ -18,9 +18,16 @@ export const useFormValidation = (initialState, validate) => {
     const validationErrors = validate(formData);
     setErrors(validationErrors);
 
+    const isIdentificationExists = usersData.some((user) => user.identification === formData.mail);
     const isEmailExists = usersData.some((user) => user.email === formData.mail);
     const isUsernameExists = usersData.some((user) => user.username === formData.username);
 
+    if (isIdentificationExists) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        mail: "Identification already exists.",
+      }));
+    } 
     if (isEmailExists) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -35,7 +42,7 @@ export const useFormValidation = (initialState, validate) => {
     } 
 
     if (Object.keys(validationErrors).length === 0) {
-        alert("Formulario válido. Enviar datos al servidor.", formData);
+        alert("Valid form. Send data to the server.", formData);
     } else {
       console.log("Formulario inválido. Por favor, revise los campos.");
     }

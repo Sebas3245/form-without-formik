@@ -6,8 +6,8 @@ export const validateForm = (formData) => {
     errors.name = "Name is required.";
   } else if (formData.name.length < 2 || formData.name.length > 50) {
     errors.name = "Name must be between 2 and 50 characters long.";
-  } else if (!/^[a-zA-Z]+$/.test(formData.name)) {
-    errors.name = "Name can only contain letters.";
+  } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+    errors.name = "Name can only contain letters and spaces.";
   } else if (/^[<>\"'\\/%;()$&*+=|\[\]#@!?,.:_`´´´]+$/.test(formData.name)) {
     errors.name = "Name should not contain special characters.";
   }
